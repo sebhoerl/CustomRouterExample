@@ -10,8 +10,29 @@ use Acme\DemoBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 class DemoController extends Controller
 {
+    /**
+     * You can access this action with
+     *
+     * /params/PARAM1/VALUE1/PARAM2/VALUE2/PARAM3 and so forth...
+     */
+    public function paramsAction(Request $request)
+    {
+        $parameters = $request->attributes->all();
+        $text = 'Parameters: <br /><br />';
+
+        foreach ($parameters as $name => $value)
+        {
+            $text .= "$name = $value<br />";
+        }
+
+        return new Response($text);
+    }
+
     /**
      * @Route("/", name="_demo")
      * @Template()

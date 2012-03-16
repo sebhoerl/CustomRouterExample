@@ -14,5 +14,9 @@
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
             <argument type="service" id="twig.extension.acme.demo" />
         </service>
+
+        <service id="param_router_listener" class="Acme\DemoBundle\ParamRouterListener">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="1" />
+        </service>
     </services>
 </container>
